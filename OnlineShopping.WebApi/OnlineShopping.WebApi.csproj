@@ -14,4 +14,8 @@
     <Folder Include="Models\Enums\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineShopping.Infrastructure\OnlineShopping.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopping.WebApi", "On
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopping.Data", "..\OnlineShopping.Data\OnlineShopping.Data.csproj", "{EE5D5BDD-4F66-4E0A-ABB7-0894D094C679}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopping.Infrastructure", "..\OnlineShopping.Infrastructure\OnlineShopping.Infrastructure.csproj", "{74741CEB-3EC4-4982-9AC2-741C1CF3A1B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EE5D5BDD-4F66-4E0A-ABB7-0894D094C679}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE5D5BDD-4F66-4E0A-ABB7-0894D094C679}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE5D5BDD-4F66-4E0A-ABB7-0894D094C679}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74741CEB-3EC4-4982-9AC2-741C1CF3A1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74741CEB-3EC4-4982-9AC2-741C1CF3A1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74741CEB-3EC4-4982-9AC2-741C1CF3A1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74741CEB-3EC4-4982-9AC2-741C1CF3A1B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
