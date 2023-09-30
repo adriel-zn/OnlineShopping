@@ -15,9 +15,27 @@ namespace OnlineShopping.WebApi.Controllers.v1
         }
 
         [HttpGet]
-        public IList<dynamic> GetAllProduct()
+        public IList<dynamic> GetAllProducts()
         {
              throw new NotImplementedException();
+        }
+
+        [HttpGet("{id}")]
+        public dynamic GetProductById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet("categories")]
+        public dynamic GetAllProductCategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet("category/{id}")]
+        public dynamic GetProductByCategory(int categoryId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
