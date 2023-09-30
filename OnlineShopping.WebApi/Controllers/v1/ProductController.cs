@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OnlineShopping.WebApi.Models;
 
 namespace OnlineShopping.WebApi.Controllers.v1
 {
@@ -14,28 +15,36 @@ namespace OnlineShopping.WebApi.Controllers.v1
             _logger = logger;
         }
 
+        #region GET: api/products
         [HttpGet]
-        public IList<dynamic> GetAllProducts()
+        public IList<ProductModel> GetAllProducts()
         {
-             throw new NotImplementedException();
+            return new List<ProductModel>();
         }
+        #endregion
 
+        #region GET: api/products/{id}
         [HttpGet("{id}")]
-        public dynamic GetProductById(int id)
+        public ProductModel GetProductById(int id)
         {
-            throw new NotImplementedException();
+            return new ProductModel();
         }
+        #endregion
 
+        #region GET: api/products/categories
         [HttpGet("categories")]
         public dynamic GetAllProductCategories()
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-        [HttpGet("category/{id}")]
+        #region GET: api/products/category/{categoryId}
+        [HttpGet("category/{categoryId}")]
         public dynamic GetProductByCategory(int categoryId)
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
