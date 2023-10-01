@@ -1,4 +1,6 @@
-﻿using OnlineShopping.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineShopping.Data;
+using OnlineShopping.Data.Entities;
 using OnlineShopping.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,5 +19,10 @@ namespace OnlineShopping.Infrastructure.Repositories
             _context = context;
         }
 
+        public async Task<IList<Product>> GetAll()
+        {
+            var products = await _context.Products.ToListAsync();
+            return products;
+        }
     }
 }

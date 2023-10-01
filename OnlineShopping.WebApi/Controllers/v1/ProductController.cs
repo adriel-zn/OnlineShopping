@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using OnlineShopping.Infrastructure.Interfaces;
 using OnlineShopping.WebApi.Models;
 
 namespace OnlineShopping.WebApi.Controllers.v1
@@ -9,17 +10,24 @@ namespace OnlineShopping.WebApi.Controllers.v1
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
+        private readonly IMapper _mapper;
+        private readonly IProductRepository _productRepository;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(ILogger<ProductController> logger,
+            IMapper mapper,
+            IProductRepository productRepository)
         {
             _logger = logger;
+            _mapper = mapper;
+            _productRepository = productRepository;
         }
 
         #region GET: api/products
         [HttpGet]
-        public IList<ProductModel> GetAllProducts()
+        public async Task<IList<ProductModel>> GetAllProducts()
         {
-            return new List<ProductModel>();
+            var entity = await _productRepository.GetAll();
+            return _mapper.Map<IList<ProductModel>>(entity);
         }
         #endregion
 
