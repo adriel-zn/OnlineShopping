@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using OnlineShopping.Data.Entities;
 using OnlineShopping.Infrastructure.Interfaces;
 using OnlineShopping.WebApi.Models;
 
@@ -33,9 +34,10 @@ namespace OnlineShopping.WebApi.Controllers.v1
 
         #region GET: api/products/{id}
         [HttpGet("{id}")]
-        public ProductModel GetProductById(int id)
+        public async Task<ProductModel> GetProductById(int id)
         {
-            return new ProductModel();
+            var entity = await _productRepository.GetById(id);
+            return _mapper.Map<ProductModel>(entity);
         }
         #endregion
 
@@ -52,6 +54,39 @@ namespace OnlineShopping.WebApi.Controllers.v1
         public dynamic GetProductByCategory(int categoryId)
         {
             throw new NotImplementedException();
+        }
+        #endregion
+
+        #region POST: api/products
+        [HttpPost]
+        public async Task<ProductModel> CreateProduct(ProductModel model)
+        {
+            var product = _mapper.Map<Product>(model);
+            
+            await _productRepository.Insert(product);
+
+            return _mapper.Map<ProductModel>(product);
+
+        }
+        #endregion
+
+        #region PUT: api/products
+        [HttpPut]
+        public async Task<ProductModel> UpdateProduct(ProductModel model)
+        {
+            var product = _mapper.Map<Product>(model);
+
+            await _productRepository.Update(product);
+
+            return _mapper.Map<ProductModel>(product);
+        }
+        #endregion
+
+        #region DELETE: api/products/{id}
+        [HttpDelete("{id}")]
+        public async Task DeleteProduct(int id)
+        {
+            await _productRepository.Delete(id);
         }
         #endregion
     }

@@ -24,5 +24,33 @@ namespace OnlineShopping.Infrastructure.Repositories
             var products = await _context.Products.ToListAsync();
             return products;
         }
+
+        public async Task<Product> GetById(int id)
+        {
+            var order = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            return order;
+        }
+
+        public async Task Insert(Product model)
+        {
+            _context.Products.Add(model);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Update(Product model)
+        {
+            _context.Update(model);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Delete(int id)
+        {
+            var deleteItem = await this.GetById(id);
+            if (deleteItem != null)
+            {
+                _context.Products.Remove(deleteItem);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
