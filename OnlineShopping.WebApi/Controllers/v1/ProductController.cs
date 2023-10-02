@@ -13,14 +13,17 @@ namespace OnlineShopping.WebApi.Controllers.v1
         private readonly ILogger<ProductController> _logger;
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
+        private readonly IProductCategoryRepository _productCategoryRepository;
 
         public ProductController(ILogger<ProductController> logger,
             IMapper mapper,
-            IProductRepository productRepository)
+            IProductRepository productRepository,
+            IProductCategoryRepository productCategoryRepository)
         {
             _logger = logger;
             _mapper = mapper;
             _productRepository = productRepository;
+            _productCategoryRepository = productCategoryRepository;
         }
 
         #region GET: api/products
@@ -43,17 +46,19 @@ namespace OnlineShopping.WebApi.Controllers.v1
 
         #region GET: api/products/categories
         [HttpGet("categories")]
-        public dynamic GetAllProductCategories()
+        public async Task<IList<ProductCategoryModel>> GetAllProductCategories()
         {
-            throw new NotImplementedException();
+            var entities = await _productCategoryRepository.GetAll();
+            return _mapper.Map<IList<ProductCategoryModel>>(entities);
         }
         #endregion
 
         #region GET: api/products/category/{categoryId}
         [HttpGet("category/{categoryId}")]
-        public dynamic GetProductByCategory(int categoryId)
+        public async Task<ProductCategoryModel> GetProductByCategory(int categoryId)
         {
-            throw new NotImplementedException();
+            var entity = await _productCategoryRepository.GetById(categoryId);
+            return _mapper.Map<ProductCategoryModel>(entity);
         }
         #endregion
 
@@ -66,6 +71,19 @@ namespace OnlineShopping.WebApi.Controllers.v1
             await _productRepository.Create(product);
 
             return _mapper.Map<ProductModel>(product);
+
+        }
+        #endregion
+
+        #region POST: api/products/category
+        [HttpPost("category")]
+        public async Task<ProductCategoryModel> CreateProductCategory(ProductCategoryModel model)
+        {
+            var productCategory = _mapper.Map<ProductCategory>(model);
+
+            await _productCategoryRepository.Create(productCategory);
+
+            return _mapper.Map<ProductCategoryModel>(productCategory);
 
         }
         #endregion

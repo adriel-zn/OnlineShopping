@@ -6,12 +6,12 @@ namespace OnlineShopping.WebApi
 {
     public class MappingProfile : Profile
     {
-
         public MappingProfile()
         {
-
             CreateMap<Product, ProductModel>();
             CreateMap<ProductModel, Product>();
+            CreateMap<ProductCategory, ProductCategoryModel>();
+            CreateMap<ProductCategoryModel, ProductCategory>();
         }
 
 
