@@ -63,7 +63,7 @@ namespace OnlineShopping.WebApi.Controllers.v1
         {
             var product = _mapper.Map<Product>(model);
             
-            await _productRepository.Insert(product);
+            await _productRepository.Create(product);
 
             return _mapper.Map<ProductModel>(product);
 

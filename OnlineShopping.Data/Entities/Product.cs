@@ -20,7 +20,13 @@ namespace OnlineShopping.Data.Entities
         public decimal Price { get; set; }
         [Required]
         public int ProductCategoryId { get; set; }
+        //[Required]
+        public int ProductRatingId { get; set; }
 
         public byte[]? Image { get; set; } = null;
+
+
+        public ProductCategory ProductCategory { get; set; }
+        public ProductCategory ProductRating { get; set; }
     }
 }

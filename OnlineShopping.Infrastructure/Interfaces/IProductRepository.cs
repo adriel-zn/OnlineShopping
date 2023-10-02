@@ -11,7 +11,7 @@ namespace OnlineShopping.Infrastructure.Interfaces
     {
         Task<IList<Product>> GetAll();
         Task<Product> GetById(int id);
-        Task Insert(Product model);
+        Task Create(Product model);
         Task Update(Product model);
         Task Delete(int id);
     }

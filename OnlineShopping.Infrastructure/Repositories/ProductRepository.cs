@@ -21,17 +21,15 @@ namespace OnlineShopping.Infrastructure.Repositories
 
         public async Task<IList<Product>> GetAll()
         {
-            var products = await _context.Products.ToListAsync();
-            return products;
+            return await _context.Products.ToListAsync();
         }
 
         public async Task<Product> GetById(int id)
         {
-            var order = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
-            return order;
+            return await _context.Products.FirstAsync(x => x.Id == id);
         }
 
-        public async Task Insert(Product model)
+        public async Task Create(Product model)
         {
             _context.Products.Add(model);
             await _context.SaveChangesAsync();
@@ -45,10 +43,10 @@ namespace OnlineShopping.Infrastructure.Repositories
 
         public async Task Delete(int id)
         {
-            var deleteItem = await this.GetById(id);
-            if (deleteItem != null)
+            var existItem = await this.GetById(id);
+            if (existItem != null)
             {
-                _context.Products.Remove(deleteItem);
+                _context.Products.Remove(existItem);
                 await _context.SaveChangesAsync();
             }
         }
