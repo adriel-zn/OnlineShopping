@@ -1,9 +1,9 @@
+//using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using OnlineShopping.Data;
 using OnlineShopping.Infrastructure.Interfaces;
 using OnlineShopping.Infrastructure.Repositories;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +23,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 
+//builder.Services.AddAuthentication(option =>
+//    {
+//        option.DefaultAuthenticateScheme = GoogleDefaults.AuthenticationScheme;
+//        option.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+//    })
+//    .AddGoogle(googleOption =>
+//    {
+//        googleOption.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+//        googleOption.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+//    });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -64,6 +74,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCookiePolicy();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
